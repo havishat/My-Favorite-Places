@@ -71,6 +71,14 @@ class PlacesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let object = places[indexPath.row]
+        moc.delete(object)
+        save()
+        places.remove(at: indexPath.row)
+        tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
         let controller = navController.topViewController as! AddItemViewController

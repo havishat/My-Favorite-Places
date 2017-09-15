@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         manager.startUpdatingLocation()
         mapView.delegate = self
         fetchAllData()
+        addAllAnnotations()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,11 +72,15 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     
+    
+    
 }
+
+
 
 extension ViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func addAllAnnotations() {
         for place in places {
             let pin = MKPointAnnotation()
             pin.coordinate.longitude = place.lon
@@ -88,6 +93,9 @@ extension ViewController: MKMapViewDelegate {
 
 extension ViewController: MapDelegate {
     func cancel() {
+        fetchAllData()
+        mapView.removeAnnotations(mapView.annotations)
+        addAllAnnotations()
         dismiss(animated: true, completion: nil)
     }
 }

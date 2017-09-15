@@ -88,6 +88,8 @@ class AddItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        name.returnKeyType = UIReturnKeyType.done
+        desc.returnKeyType = UIReturnKeyType.done
         manager.delegate = self
         mapView.delegate = self
         manager.startUpdatingLocation()
