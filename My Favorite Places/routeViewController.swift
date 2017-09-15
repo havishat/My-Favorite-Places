@@ -50,10 +50,10 @@ class routeViewController: UIViewController {
             }
             heartLabel.text = heart
             let center = CLLocationCoordinate2DMake(place.lat, place.lon)
-            mapView.setCenter(center, animated: false)
             let span = MKCoordinateSpanMake(0.03, 0.03)
             let region = MKCoordinateRegionMake(center, span)
             mapView.setRegion(region, animated: false)
+            print("regin:", region)
             let pin = MKPointAnnotation()
             pin.coordinate = center
             mapView.addAnnotation(pin)
@@ -63,6 +63,4 @@ class routeViewController: UIViewController {
 }
 
 extension routeViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-    }
 }
