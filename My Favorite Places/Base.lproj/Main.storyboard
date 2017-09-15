@@ -183,7 +183,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-4t-87k">
-                                            <rect key="frame" x="95" y="0.0" width="118" height="29"/>
+                                            <rect key="frame" x="95.5" y="0.0" width="118" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -214,7 +214,6 @@
                                     <outlet property="costLabel" destination="g9l-oe-Bwa" id="c24-p7-J1F"/>
                                     <outlet property="heartLabel" destination="kD4-Vs-lhT" id="guT-cK-W8V"/>
                                     <outlet property="nameLabel" destination="WJ9-4t-87k" id="T9A-xs-R0E"/>
-                                    <segue destination="W4V-N6-gXg" kind="presentation" identifier="displayPlace" id="EJP-mn-oU0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -238,6 +237,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="VVP-OY-kPu" kind="presentation" identifier="editPlace" id="ckA-4i-4dU"/>
+                        <segue destination="W4V-N6-gXg" kind="presentation" identifier="displayPlace" id="tjg-9S-lcT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfk-hX-0qA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,7 +410,6 @@
         <!--Navigation Controller-->
         <scene sceneID="lOt-to-WOD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dJt-C5-d6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W4V-N6-gXg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q1C-C0-3Fe">
@@ -422,12 +421,13 @@
                         <segue destination="RYz-Np-Egj" kind="relationship" relationship="rootViewController" id="bOd-91-a2O"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dJt-C5-d6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3056.8000000000002" y="-580.65967016491754"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ckA-4i-4dU"/>
+        <segue reference="9Zt-m0-ckS"/>
         <segue reference="ehe-AO-OiU"/>
     </inferredMetricsTieBreakers>
 </document>
