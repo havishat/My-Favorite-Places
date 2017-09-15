@@ -23,12 +23,69 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var costButton: UIButton!
     @IBOutlet weak var heartButton: UIButton!
 
+    @IBAction func heartButtonPressed(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            sender.tag += 1
+            sender.setTitle("<3<3", for: .normal)
+            break
+        case 2:
+            sender.tag += 1
+            sender.setTitle("<3<3<3", for: .normal)
+            break
+        case 3:
+            sender.tag += 1
+            sender.setTitle("<3<3<3<3", for: .normal)
+            break
+        case 4:
+            sender.tag += 1
+            sender.setTitle("<3<3<3<3<3", for: .normal)
+            break
+        case 5:
+            sender.tag = 1
+            sender.setTitle("<3", for: .normal)
+            break
+        default:
+            sender.setTitle("<3", for: .normal)
+            sender.tag = 1
+        }
+    }
+    
+    @IBAction func costButtonPressed(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            sender.tag += 1
+            sender.setTitle("$$", for: .normal)
+            break
+        case 2:
+            sender.tag += 1
+            sender.setTitle("$$$", for: .normal)
+            break
+        case 3:
+            sender.tag += 1
+            sender.setTitle("$$$$", for: .normal)
+            break
+        case 4:
+            sender.tag += 1
+            sender.setTitle("$$$$$", for: .normal)
+            break
+        case 5:
+            sender.tag = 1
+            sender.setTitle("$", for: .normal)
+            break
+        default:
+            sender.setTitle("$", for: .normal)
+            sender.tag = 2
+        }
+    }
+    
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.cancel()
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        delegate?.save(name: name.text!, desc: desc.text!, cost: 3, hearts: 3, location: myLocation)
+        delegate?.save(name: name.text!, desc: desc.text!, cost: costButton.tag, hearts: heartButton.tag, lat: mapView.centerCoordinate.latitude, lon: mapView.centerCoordinate.longitude)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.delegate = self
@@ -57,11 +114,7 @@ extension AddItemViewController: CLLocationManagerDelegate {
 
 extension AddItemViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-//        print(self.mapView.centerCoordinate)
-        
         let pins = mapView.annotations
-//        print(pins)
         let center = MKPointAnnotation()
         center.coordinate = mapView.centerCoordinate
         mapView.removeAnnotations(pins)

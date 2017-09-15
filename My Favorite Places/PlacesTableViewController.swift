@@ -7,35 +7,68 @@
 //
 
 import UIKit
+import CoreData
 import CoreLocation
 
-class PlacesTableViewController: UITableViewController, placeDelegate {
-
+class PlacesTableViewController: UITableViewController {
+    
+    var places = [Place]()
+    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    weak var delegate: MapDelegate?
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+            delegate?.cancel()
+    }
+    
+    func fetchAllPlaces(){
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Place")
+        do {
+            let result = try moc.fetch(request)
+            places = result as! [Place]
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func save() {
+        print("Saving")
+        if moc.hasChanges {
+            do {
+                try moc.save()
+                print("save successful")
+            } catch {
+                print("\(error)")
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        fetchAllPlaces()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return places.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell")
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell") as! PlaceCell
+        cell.nameLabel.text = places[indexPath.row].name
+        var cost = ""
+        for _ in 0..<Int(places[indexPath.row].cost) {
+            cost += "$"
+        }
+        cell.costLabel.text = "Cost: \(cost)"
+        var hearts = ""
+        for _ in 0..<Int(places[indexPath.row].hearts) {
+            hearts += "<3"
+        }
+        cell.heartLabel.text = "Favorite: \(hearts)"
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,10 +76,24 @@ class PlacesTableViewController: UITableViewController, placeDelegate {
         let controller = navController.topViewController as! AddItemViewController
         controller.delegate = self
     }
+}
+
+extension PlacesTableViewController: placeDelegate {
     
-    func save(name: String, desc: String, cost: Int, hearts: Int, location: CLLocationCoordinate2D) {
+    func save(name: String, desc: String, cost: Int, hearts: Int, lat: Double, lon: Double) {
+        let place = NSEntityDescription.insertNewObject(forEntityName: "Place", into: moc) as! Place
+        place.name = name
+        place.desc = desc
+        place.cost = Double(cost)
+        place.hearts = Double(hearts)
+        place.lat = lat
+        place.lon = lon
+        save()
+        places.append(place)
+        tableView.reloadData()
         dismiss(animated: true, completion: nil)
     }
+    
     func cancel() {
         dismiss(animated: true, completion: nil)
     }

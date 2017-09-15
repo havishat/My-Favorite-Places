@@ -8,7 +8,12 @@
 
 import UIKit
 import MapKit
+import CoreData
 import CoreLocation
+
+protocol MapDelegate: class {
+    func cancel()
+}
 
 class ViewController: UIViewController {
 
@@ -17,6 +22,20 @@ class ViewController: UIViewController {
     let manager = CLLocationManager()
     var region = MKCoordinateRegion()
     var myLocation = CLLocationCoordinate2D()
+    
+    var places = [Place]()
+    
+    let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    func fetchAllData(){
+        let place = NSFetchRequest<NSFetchRequestResult>(entityName: "Place")
+        do {
+            let results = try moc.fetch(place)
+            places = results as! [Place]
+        } catch {
+            print("\(error)")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +44,26 @@ class ViewController: UIViewController {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         mapView.delegate = self
+        fetchAllData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let controller = navController.topViewController as! PlacesTableViewController
+        controller.delegate = self
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = locations[0]
-        
         myLocation = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
-        print(self.mapView.centerCoordinate)
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.03, 0.03)
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(myLocation, span)
         self.mapView.setRegion(region, animated: true)
         self.mapView.showsUserLocation = true
@@ -53,7 +76,18 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
+        for place in places {
+            let pin = MKPointAnnotation()
+            pin.coordinate.longitude = place.lon
+            pin.coordinate.latitude = place.lat
+            mapView.addAnnotation(pin)
+        }
     }
     
+}
+
+extension ViewController: MapDelegate {
+    func cancel() {
+        dismiss(animated: true, completion: nil)
+    }
 }
