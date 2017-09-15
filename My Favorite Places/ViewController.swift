@@ -16,16 +16,15 @@ class ViewController: UIViewController {
     
     let manager = CLLocationManager()
     var region = MKCoordinateRegion()
+    var myLocation = CLLocationCoordinate2D()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //map
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
-        mapView.setRegion(region, animated: true)
+        mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,10 +37,23 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = locations[0]
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(10, 10)
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
-        region = MKCoordinateRegionMake(myLocation, span)
         
+        myLocation = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
+        print(self.mapView.centerCoordinate)
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.03, 0.03)
+        let region = MKCoordinateRegionMake(myLocation, span)
+        self.mapView.setRegion(region, animated: true)
         self.mapView.showsUserLocation = true
+        self.manager.stopUpdatingLocation()
     }
+    
+    
+}
+
+extension ViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+    }
+    
 }

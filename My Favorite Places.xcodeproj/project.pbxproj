@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4407877E1F6B49B0001850FD /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4407877D1F6B49B0001850FD /* AddItemViewController.swift */; };
+		440787801F6B4A4C001850FD /* PlaceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4407877F1F6B4A4C001850FD /* PlaceDelegate.swift */; };
 		441543511F6B06D50035E15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441543501F6B06D50035E15C /* AppDelegate.swift */; };
 		441543531F6B06D50035E15C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441543521F6B06D50035E15C /* ViewController.swift */; };
 		441543561F6B06D50035E15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441543541F6B06D50035E15C /* Main.storyboard */; };
@@ -16,6 +18,7 @@
 		441543691F6B06D50035E15C /* My_Favorite_PlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441543681F6B06D50035E15C /* My_Favorite_PlacesTests.swift */; };
 		441543741F6B06D50035E15C /* My_Favorite_PlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441543731F6B06D50035E15C /* My_Favorite_PlacesUITests.swift */; };
 		441543831F6B0C050035E15C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441543821F6B0C050035E15C /* CoreLocation.framework */; };
+		44ACAEC41F6B1FCC00735F86 /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ACAEC31F6B1FCC00735F86 /* PlacesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4407877D1F6B49B0001850FD /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		4407877F1F6B4A4C001850FD /* PlaceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDelegate.swift; sourceTree = "<group>"; };
 		4415434D1F6B06D50035E15C /* My Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441543501F6B06D50035E15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441543521F6B06D50035E15C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		441543731F6B06D50035E15C /* My_Favorite_PlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_Favorite_PlacesUITests.swift; sourceTree = "<group>"; };
 		441543751F6B06D50035E15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441543821F6B0C050035E15C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		44ACAEC31F6B1FCC00735F86 /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				441543501F6B06D50035E15C /* AppDelegate.swift */,
 				441543521F6B06D50035E15C /* ViewController.swift */,
 				441543541F6B06D50035E15C /* Main.storyboard */,
+				44ACAEC31F6B1FCC00735F86 /* PlacesTableViewController.swift */,
+				4407877D1F6B49B0001850FD /* AddItemViewController.swift */,
+				4407877F1F6B4A4C001850FD /* PlaceDelegate.swift */,
 				4415435A1F6B06D50035E15C /* Assets.xcassets */,
 				4415435C1F6B06D50035E15C /* LaunchScreen.storyboard */,
 				4415435F1F6B06D50035E15C /* Info.plist */,
@@ -276,7 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440787801F6B4A4C001850FD /* PlaceDelegate.swift in Sources */,
+				4407877E1F6B49B0001850FD /* AddItemViewController.swift in Sources */,
 				441543531F6B06D50035E15C /* ViewController.swift in Sources */,
+				44ACAEC41F6B1FCC00735F86 /* PlacesTableViewController.swift in Sources */,
 				441543511F6B06D50035E15C /* AppDelegate.swift in Sources */,
 				441543591F6B06D50035E15C /* My_Favorite_Places.xcdatamodeld in Sources */,
 			);
@@ -535,6 +547,7 @@
 				4415437A1F6B06D50035E15C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4415437B1F6B06D50035E15C /* Build configuration list for PBXNativeTarget "My Favorite PlacesTests" */ = {
 			isa = XCConfigurationList;
@@ -543,6 +556,7 @@
 				4415437D1F6B06D50035E15C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4415437E1F6B06D50035E15C /* Build configuration list for PBXNativeTarget "My Favorite PlacesUITests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +565,7 @@
 				441543801F6B06D50035E15C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
