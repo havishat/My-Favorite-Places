@@ -77,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="FVM-M5-pzl" id="psn-6m-bw0"/>
+                        <segue destination="W4V-N6-gXg" kind="presentation" identifier="displayPlace" id="d0Z-Qy-f93"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -183,7 +184,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-4t-87k">
-                                            <rect key="frame" x="95.5" y="0.0" width="118" height="29"/>
+                                            <rect key="frame" x="95" y="0.0" width="118" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -429,5 +430,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="9Zt-m0-ckS"/>
         <segue reference="ehe-AO-OiU"/>
+        <segue reference="d0Z-Qy-f93"/>
     </inferredMetricsTieBreakers>
 </document>
