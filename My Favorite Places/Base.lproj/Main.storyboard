@@ -184,7 +184,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-4t-87k">
-                                            <rect key="frame" x="95" y="0.0" width="118" height="29"/>
+                                            <rect key="frame" x="95.5" y="0.0" width="118" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
