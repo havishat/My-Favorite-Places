@@ -88,7 +88,9 @@ class AddItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        name.delegate = self
         name.returnKeyType = UIReturnKeyType.done
+        desc.delegate = self
         desc.returnKeyType = UIReturnKeyType.done
         manager.delegate = self
         mapView.delegate = self
@@ -121,5 +123,12 @@ extension AddItemViewController: MKMapViewDelegate {
         center.coordinate = mapView.centerCoordinate
         mapView.removeAnnotations(pins)
         mapView.addAnnotation(center)
+    }
+}
+
+extension AddItemViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
