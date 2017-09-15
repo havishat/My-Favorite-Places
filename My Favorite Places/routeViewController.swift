@@ -32,37 +32,13 @@ class routeViewController: UIViewController {
         mapView.delegate = self
         manager.delegate = self
         manager.startUpdatingLocation()
+        mapView.showsUserLocation = true
         setThings()
-        getDirections()
-//        print("This is the Test that sender sent:", test?.name)
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func getDirections(){
-        if let place = place {
-            mapView.showsUserLocation = true
-            let request = MKDirectionsRequest()
-            request.source = MKMapItem(placemark: MKPlacemark(coordinate: myLocation, addressDictionary: nil))
-            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: place.lat, longitude: place.lon), addressDictionary: nil))
-            request.requestsAlternateRoutes = false
-            request.transportType = .automobile
-            
-            let directions = MKDirections(request: request)
-            
-            directions.calculate { [unowned self] response, error in
-                guard let unwrappedResponse = response else { return }
-                
-                for route in unwrappedResponse.routes {
-                    self.mapView.add(route.polyline)
-                    self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-                }
-                
-            }
-        }
     }
     
     func setThings(){
